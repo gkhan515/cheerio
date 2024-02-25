@@ -11,7 +11,7 @@ public class movement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-
+        
     }
 
     // Update is called once per frame
@@ -22,6 +22,6 @@ public class movement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rb.velocity = movementDirection * movementSpeed;
+        rb.velocity = movementDirection.normalized * movementSpeed;
     }
 }
