@@ -112,8 +112,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rock: {fileID: 0}
-  movementSpeed: 7
-  forceAmount: 10
+  frictionCoefficient: 2
+  keyboardAccelerationScalar: 2
+  grappleForce: 10
 --- !u!50 &5486318008299931925
 Rigidbody2D:
   serializedVersion: 4
