@@ -11,9 +11,11 @@ public class movement : MonoBehaviour
 
     //keyboard movement
     private Vector2 keyboardDirection;
-    private float keyboardStrength = 1f;
+    private float keyboardStrength;
     private Vector2 keyboardForce;
     [SerializeField] private float keyboardAccelerationScalar = 1f;
+    [SerializeField] private float keyboardStrengthMinStrength = 5f;
+    [SerializeField] private float keyboardStrengthMaxSpeed = 20f;
 
     //grapple movement
     private RaycastHit2D click;
@@ -37,7 +39,10 @@ public class movement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        keyboardStrength = rb.velocity.magnitude * keyboardAccelerationScalar + 1;
+        if (rb.velocity.magnitude < keyboardStrengthMaxSpeed)
+        {
+            keyboardStrength = rb.velocity.magnitude * keyboardAccelerationScalar + keyboardStrengthMinStrength;
+        }
 
         if (keyboardDirection == Vector2.zero) 
         {
@@ -53,7 +58,7 @@ public class movement : MonoBehaviour
         {
             mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             click = Physics2D.Raycast(mousePosition, Vector2.zero);
-            if (click.collider != null && click.collider.gameObject.name == "rock")
+            if (true || click.collider != null && click.collider.gameObject.name == "rock")
             {
                 grappleDirection = (rock.transform.position - rb.transform.position).normalized;
                 rb.AddForce(grappleDirection * grappleForce);
