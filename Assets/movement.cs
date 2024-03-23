@@ -44,7 +44,7 @@ public class movement : MonoBehaviour
             keyboardStrength = rb.velocity.magnitude * keyboardAccelerationScalar + keyboardStrengthMinStrength;
         }
 
-        if (keyboardDirection == Vector2.zero) 
+        if (keyboardDirection == Vector2.zero && !currentlyClicking) 
         {
             rb.velocity -= rb.velocity * frictionCoefficient * Time.deltaTime;
         }
